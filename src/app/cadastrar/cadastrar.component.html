@@ -1,0 +1,50 @@
+<h2>Cadastrar Usuário</h2>
+
+<form #cadastrarForm="ngForm" (ngSubmit)="onSubmit(cadastrarForm)">
+  <label for="nome">Nome</label>
+  <input
+    type="text"
+    id="nome"
+    name="nome"
+    required
+    minlength="1"
+    [(ngModel)]="nome"
+    #nome="ngModel"
+  />
+  <!-- Verifica se o campo nome é inválido e foi tocado -->
+  <div *ngIf="nome?.invalid && nome?.touched">Nome é obrigatório.</div>
+
+  <label for="senha">Senha</label>
+  <input
+    type="password"
+    id="senha"
+    name="senha"
+    required
+    minlength="6"
+    maxlength="20"
+    [(ngModel)]="senha"
+    #senha="ngModel"
+  />
+  <!-- Verifica se o campo senha é inválido e foi tocado -->
+  <div *ngIf="senha?.invalid && senha?.touched">Senha deve ter entre 6 e 20 caracteres.</div>
+
+  <label for="confirmSenha">Confirmar Senha</label>
+  <input
+    type="password"
+    id="confirmSenha"
+    name="confirmSenha"
+    required
+    minlength="6"
+    maxlength="20"
+    [(ngModel)]="confirmSenha"
+    #confirmSenha="ngModel"
+  />
+  <!-- Verifica se o campo confirmar senha é inválido e foi tocado -->
+  <div *ngIf="confirmSenha?.invalid && confirmSenha?.touched">Confirmação da senha é obrigatória.</div>
+
+  <!-- Botão de enviar -->
+  <button type="submit" [disabled]="!cadastrarForm.form.valid">Cadastrar</button>
+</form>
+
+<!-- Exibe a mensagem de sucesso -->
+<div *ngIf="mensagemSucesso">{{ mensagemSucesso }}</div>
